@@ -10,9 +10,9 @@ after_success:
   - docker build -t leoenes/multi-docker-nginx ./nginx
   - docker build -t leoenes/multi-docker-server ./server
   - docker build -t leoenes/multi-docker-worker ./worker
-  #Log in to the Docker CLImulti-docker-client
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_IDmulti-docker-nginx " --password-stdin
-  # Take those images and push them to docker hubmulti-docker-server
+  #Log in to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
   - docker push leoenes/multi-docker-client
   - docker push leoenes/multi-docker-nginx
   - docker push leoenes/multi-docker-server
