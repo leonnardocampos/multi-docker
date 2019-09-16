@@ -6,17 +6,17 @@ before_install:
 script:
   - docker run -e CI=true leoenes/multi-docker-test npm run test -- --coverage
 after_success:
-  - docker build -t leoenes/multi-docker-client ./client
-  - docker build -t leoenes/multi-docker-nginx ./nginx
-  - docker build -t leoenes/multi-docker-server ./server
-  - docker build -t leoenes/multi-docker-worker ./worker
+  - docker build -t $DOCKER_ID/multi-docker-client ./client
+  - docker build -t $DOCKER_ID/multi-docker-nginx ./nginx
+  - docker build -t $DOCKER_ID/multi-docker-server ./server
+  - docker build -t $DOCKER_ID/multi-docker-worker ./worker
   #Log in to the Docker CLI
-  - echo '$@Cayman01' | docker login -u 'leoenes' --password-stdin
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
   # Take those images and push them to docker hub
-  - docker push leoenes/multi-docker-client
-  - docker push leoenes/multi-docker-nginx
-  - docker push leoenes/multi-docker-server
-  - docker push leoenes/multi-docker-worker
+  - docker push $DOCKER_ID/multi-docker-client
+  - docker push $DOCKER_ID/multi-docker-nginx
+  - docker push $DOCKER_ID/multi-docker-server
+  - docker push $DOCKER_ID/multi-docker-worker
 # deploy:
 #   provider: elasticbeanstalk
 #   region: "sa-east-1"
