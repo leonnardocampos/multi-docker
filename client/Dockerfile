@@ -1,6 +1,6 @@
 # STAGE A
 # Use an existing docker image as a base
-FROM node:alpine
+FROM node:alpine as builder
 
 WORKDIR /app
 

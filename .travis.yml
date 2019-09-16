@@ -6,17 +6,17 @@ before_install:
 script:
   - docker run -e CI=true $DOCKER_ID/multi-docker-test npm run test -- --coverage
 after_success:  
+  - docker build -t $DOCKER_ID/multi-docker-client:latest ./client
   - docker build -t $DOCKER_ID/multi-docker-nginx:latest ./nginx
   - docker build -t $DOCKER_ID/multi-docker-server:latest ./server
-  - docker build -t $DOCKER_ID/multi-docker-worker:latest ./worker
-  - docker build -t $DOCKER_ID/multi-docker-client:latest ./client
+  - docker build -t $DOCKER_ID/multi-docker-worker:latest ./worker  
   #Log in to the Docker CLI
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_ID --password-stdin
   # Take those images and push them to docker hub
+  - docker push $DOCKER_ID/multi-docker-client:latest
   - docker push $DOCKER_ID/multi-docker-nginx:latest
   - docker push $DOCKER_ID/multi-docker-server:latest
-  - docker push $DOCKER_ID/multi-docker-worker:latest
-  - docker push $DOCKER_ID/multi-docker-client:latest  
+  - docker push $DOCKER_ID/multi-docker-worker:latest    
 # deploy:
 #   provider: elasticbeanstalk
 #   region: "sa-east-1"

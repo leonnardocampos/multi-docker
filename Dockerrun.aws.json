@@ -3,7 +3,9 @@
     "containerDefinitions": [
         {
             "name": "multi-docker-client",
-            "image": "leoenes/multi-docker-client"
+            "image": "leoenes/multi-docker-client",
+            "hostname": "client",
+            "essential": "true"
         }
     ]
 }
