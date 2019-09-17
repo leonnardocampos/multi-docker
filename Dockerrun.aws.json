@@ -5,7 +5,32 @@
             "name": "multi-docker-client",
             "image": "leoenes/multi-docker-client",
             "hostname": "client",
-            "essential": "true"
+            "essential": "false"
+        },
+        {
+            "name": "multi-docker-server",
+            "image": "leoenes/multi-docker-server",
+            "hostname": "api",
+            "essential": "false"
+        },
+        {
+            "name": "multi-docker-worker",
+            "image": "leoenes/multi-docker-worker",
+            "hostname": "worker",
+            "essential": "false"
+        },
+        {
+            "name": "multi-docker-nginx",
+            "image": "leoenes/multi-docker-nginx",
+            "hostname": "nginx",
+            "essential": "true",
+            "portMappings":[
+                {
+                    "hostPort" : 80,
+                    "containerPort" : 80
+                }
+            ],
+            "links" : ["client", "server"]
         }
     ]
 }
