@@ -33,7 +33,10 @@
                     "containerPort" : 80
                 }
             ],
-            "links" : ["client", "server"],
+            "links" : [
+                "multi-docker-client",
+                "multi-docker-server"
+            ],
             "memory": "128"
         }
     ]
